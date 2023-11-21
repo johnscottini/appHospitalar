@@ -1,0 +1,4 @@
+Maria Silva;maria@email.com;12345678901;1990-01-01;1990-01-01T00:00:00;Rua A;Cidade A;123;Estado A;12345-678;ID_A;Histórico Maria;Descrição Sintomas Maria;false;true;false;ID_Questionario1
+Carlos Santos;carlos@email.com;98765432102;1995-05-05;1990-01-01T00:00:00;Rua B;Cidade B;456;Estado B;54321-876;ID_B;Histórico Carlos;Descrição Sintomas Carlos;true;false;true;ID_Questionario2
+José Oliveira;jose@email.com;11223344556;1988-08-08;1990-01-01T00:00:00;Rua C;Cidade C;789;Estado C;98765-432;ID_C;Histórico José;Descrição Sintomas José;false;true;false;ID_Questionario3
+Ana Rodrigues;ana@email.com;99887766554;1985-12-25;1990-01-01T00:00:00;Rua D;Cidade D;101;Estado D;11223-344;ID_D;Histórico Ana;Descrição Sintomas Ana;true;false;true;ID_Questionario4
