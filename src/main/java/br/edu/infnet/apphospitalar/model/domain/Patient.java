@@ -1,5 +1,6 @@
 package br.edu.infnet.apphospitalar.model.domain;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,27 +9,38 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Patient extends Person{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    @Setter
+    private long id;
     public Patient() {
 
+    }
+
+    public Patient(Long id) {
+        this.id = id;
     }
     public Patient(String fullName, LocalDate birthDate, LocalDateTime arrivalTime, String cpf, int score, Address address, MedicalQuestionnaire questionnaire) {
         super(fullName, birthDate, cpf, address);
         this.arrivalTime = arrivalTime;
         this.questionnaire = questionnaire;
         this.score= score;
-        this.consultationList = new ArrayList<>();
     }
 
     @Getter
     @Setter
     private LocalDateTime arrivalTime;
 
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Getter
     @Setter
-    private List<Consultation> consultationList;
+    private List<Consultation> consultationList = new ArrayList<>();
 
+    @OneToOne(cascade = CascadeType.MERGE)
     @Getter
     @Setter
     private MedicalQuestionnaire questionnaire;
@@ -42,7 +54,8 @@ public class Patient extends Person{
         return super.toString() +
                 "arrivalTime=" + arrivalTime +
                 "score=" + score +
-                ", consultationList=" + consultationList +
+                ", consultationList=" + consultationList+
                 ", questionnaire=" + questionnaire;
     }
+
 }

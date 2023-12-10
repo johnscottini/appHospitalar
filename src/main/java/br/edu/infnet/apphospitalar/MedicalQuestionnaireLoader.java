@@ -1,17 +1,17 @@
 package br.edu.infnet.apphospitalar;
 
 import br.edu.infnet.apphospitalar.model.domain.MedicalQuestionnaire;
-import br.edu.infnet.apphospitalar.service.MedicalQuestionnaireService;
-import br.edu.infnet.apphospitalar.service.PatientService;
+import br.edu.infnet.apphospitalar.model.service.MedicalQuestionnaireService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.time.format.DateTimeFormatter;
 
+@Order(2)
 @Component
 public class MedicalQuestionnaireLoader implements ApplicationRunner {
     @Autowired
@@ -34,7 +34,6 @@ public class MedicalQuestionnaireLoader implements ApplicationRunner {
             questionnaire.setPregnant(Boolean.parseBoolean((fields[2])));
             questionnaire.setHasChronicCondition(Boolean.parseBoolean(fields[3]));
             questionnaire.setPersonWithDisabilities(Boolean.parseBoolean(fields[4]));
-            questionnaire.setId(fields[5]);
 
             medicalQuestionnaireService.insert(questionnaire);
 

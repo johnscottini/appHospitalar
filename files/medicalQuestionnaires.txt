@@ -1,4 +1,4 @@
-Histórico1;DescriçãoSintomas1;false;true;false;ID_Questionario1
-Histórico2;DescriçãoSintomas2;true;false;true;ID_Questionario2
-Histórico3;DescriçãoSintomas3;false;true;false;ID_Questionario3
-Histórico4;DescriçãoSintomas4;true;false;true;ID_Questionario4
+Histórico1;DescriçãoSintomas1;false;true;false
+Histórico2;DescriçãoSintomas2;true;false;true
+Histórico3;DescriçãoSintomas3;false;true;false
+Histórico4;DescriçãoSintomas4;true;false;true

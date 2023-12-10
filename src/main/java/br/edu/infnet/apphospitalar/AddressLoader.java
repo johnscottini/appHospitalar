@@ -1,16 +1,17 @@
 package br.edu.infnet.apphospitalar;
 
 import br.edu.infnet.apphospitalar.model.domain.Address;
-import br.edu.infnet.apphospitalar.service.AddressService;
-import br.edu.infnet.apphospitalar.service.PatientService;
+import br.edu.infnet.apphospitalar.model.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+@Order(1)
 @Component
 public class AddressLoader implements ApplicationRunner {
     @Autowired
@@ -31,7 +32,6 @@ public class AddressLoader implements ApplicationRunner {
             address.setNumber(fields[2]);
             address.setState(fields[3]);
             address.setPostalCode(fields[4]);
-            address.setId(fields[5]);
 
             addressService.insert(address);
             line = reader.readLine();

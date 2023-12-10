@@ -1,21 +1,27 @@
 package br.edu.infnet.apphospitalar.model.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 public class Address {
 
     public Address() {
 
     }
-
-    public Address(String street,String state,String city,String postalCode,String number, String id) {
+    public Address(Long id) {
+        this.id = id;
+    }
+    public Address(String street,String state,String city,String postalCode,String number) {
         this.street= street;
         this.state= state;
         this.city= city;
         this.postalCode= postalCode;
         this.number= number;
-        this.id = id;
     }
 
     @Getter
@@ -38,9 +44,11 @@ public class Address {
     @Setter
     private String number;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    private String id;
+    private Long id;
 
     @Override
     public String toString() {

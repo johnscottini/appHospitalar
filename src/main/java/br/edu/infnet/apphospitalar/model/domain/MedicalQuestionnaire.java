@@ -1,8 +1,13 @@
 package br.edu.infnet.apphospitalar.model.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 public class MedicalQuestionnaire {
 
     public MedicalQuestionnaire(boolean hasChronicCondition, String symptomsDescription, String medicalHistory, boolean isPregnant, boolean isPersonWithDisabilities) {
@@ -33,12 +38,17 @@ public class MedicalQuestionnaire {
     @Setter
     private boolean isPregnant;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    private String id;
+    private Long id;
 
     public MedicalQuestionnaire() {
 
+    }
+    public MedicalQuestionnaire(Long id) {
+        this.id = id;
     }
 
     @Override

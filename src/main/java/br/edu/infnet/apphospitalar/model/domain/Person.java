@@ -1,10 +1,12 @@
 package br.edu.infnet.apphospitalar.model.domain;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
+@MappedSuperclass
 public abstract class Person {
 
     public Person (String fullName,LocalDate birthDate, String cpf, Address address) {
@@ -32,6 +34,7 @@ public abstract class Person {
 
     @Getter
     @Setter
+    @OneToOne(cascade = CascadeType.MERGE)
     private Address address;
 
     public Person() {

@@ -1,29 +1,34 @@
 package br.edu.infnet.apphospitalar.model.domain;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+@Entity
 public class Consultation {
 
     public Consultation() {
 
     }
 
-    public Consultation(Doctor doctor, Patient patient, LocalDateTime consultationDateTime, String consultationDescription, double consultationValue, String id) {
+    public Consultation(Doctor doctor, Patient patient, LocalDateTime consultationDateTime, String consultationDescription, double consultationValue) {
        this.doctor = doctor;
        this.patient = patient;
        this.consultationDateTime = consultationDateTime;
        this.consultationDescription = consultationDescription;
        this.consultationValue = consultationValue;
-       this.id = id;
     }
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "doctor_id")
     @Getter
     @Setter
     private Doctor doctor;
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "patient_id")
     @Getter
     @Setter
     private Patient patient;
@@ -40,15 +45,17 @@ public class Consultation {
     @Setter
     private double consultationValue;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    private String id;
+    private Long id;
 
     @Override
     public String toString() {
         return "Consultation:" +
-                "doctor=" + doctor +
-                ", patient=" + patient +
+                "doctor=" + doctor.getFullName() +
+                ", patient=" + patient.getFullName() +
                 ", consultationDateTime=" + consultationDateTime +
                 ", consultationDescription='" + consultationDescription + '\'' +
                 ", consultationValue=" + consultationValue +

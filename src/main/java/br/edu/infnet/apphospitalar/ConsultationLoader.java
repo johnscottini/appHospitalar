@@ -1,11 +1,11 @@
 package br.edu.infnet.apphospitalar;
 
 import br.edu.infnet.apphospitalar.model.domain.*;
-import br.edu.infnet.apphospitalar.service.ConsultationService;
-import br.edu.infnet.apphospitalar.service.DoctorService;
+import br.edu.infnet.apphospitalar.model.service.ConsultationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -13,10 +13,8 @@ import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
+@Order(5)
 @Component
 public class ConsultationLoader implements ApplicationRunner {
     @Autowired
@@ -34,62 +32,15 @@ public class ConsultationLoader implements ApplicationRunner {
 
         while (line != null) {
             fields = line.split(";");
-            Patient patient = new Patient();
-            patient.setFullName(fields[0]);
-            patient.setEmail(fields[1]);
-            patient.setCpf(fields[2]);
-            //patient.setScore(PatientService.calculateScore(patient));
-            LocalDate birthDate = LocalDate.parse(fields[3], formatter);
-            patient.setBirthDate(birthDate);
-            LocalDateTime arrivalTime = LocalDateTime.parse(fields[4], formatterTime);
-            patient.setArrivalTime(arrivalTime);
-
-            Address address = new Address();
-            address.setStreet(fields[5]);
-            address.setCity(fields[6]);
-            address.setNumber(fields[7]);
-            address.setState(fields[8]);
-            address.setPostalCode(fields[9]);
-            address.setId(fields[10]);
-            patient.setAddress(address);
-
-            MedicalQuestionnaire questionnaire = new MedicalQuestionnaire();
-            questionnaire.setMedicalHistory(fields[11]);
-            questionnaire.setSymptomsDescription(fields[12]);
-            questionnaire.setPregnant(Boolean.parseBoolean((fields[13])));
-            questionnaire.setHasChronicCondition(Boolean.parseBoolean(fields[14]));
-            questionnaire.setPersonWithDisabilities(Boolean.parseBoolean(fields[15]));
-            questionnaire.setId(fields[16]);
-            patient.setQuestionnaire(questionnaire);
-            patient.setConsultationList(new ArrayList<>());
-            //patient.setScore(MedicalQuestionnaireService.calculateScore(questionnaire, patient));
 
             Consultation consultation = new Consultation();
-            consultation.setConsultationDescription(fields[17]);
-            consultation.setConsultationValue(Double.parseDouble(fields[18]));
-            consultation.setConsultationDateTime(LocalDateTime.parse(fields[19], formatterTime));
-            consultation.setId(fields[20]);
-            consultation.setPatient(patient);
+            consultation.setPatient(new Patient(Long.valueOf(fields[0])));
+            consultation.setConsultationDescription(fields[1]);
+            consultation.setConsultationValue(Double.parseDouble(fields[2]));
+            consultation.setConsultationDateTime(LocalDateTime.parse(fields[3], formatterTime));
 
-            Doctor doctor = new Doctor();
-            doctor.setConsultationList(new ArrayList<>());
+            consultation.setDoctor(new Doctor(Long.valueOf(fields[4])));
 
-            doctor.setFullName(fields[21]);
-            doctor.setEmail(fields[22]);
-            doctor.setCpf(fields[23]);
-            doctor.setBirthDate(LocalDate.parse(fields[24], formatter));
-            doctor.setSpecialty(fields[25]);
-            doctor.setCrm(fields[26]);
-
-            Address doctorAddress = new Address();
-            doctorAddress.setStreet(fields[27]);
-            doctorAddress.setCity(fields[28]);
-            doctorAddress.setNumber(fields[29]);
-            doctorAddress.setState(fields[30]);
-            doctorAddress.setPostalCode(fields[31]);
-            doctorAddress.setId(fields[32]);
-            doctor.setAddress(doctorAddress);
-            consultation.setDoctor(doctor);
 
             consultationService.insert(consultation);
             line = reader.readLine();
