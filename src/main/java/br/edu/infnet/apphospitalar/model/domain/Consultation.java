@@ -21,13 +21,13 @@ public class Consultation {
        this.consultationValue = consultationValue;
     }
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "doctor_id")
     @Getter
     @Setter
     private Doctor doctor;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "patient_id")
     @Getter
     @Setter

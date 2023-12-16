@@ -3,20 +3,18 @@ package br.edu.infnet.apphospitalar;
 import br.edu.infnet.apphospitalar.model.domain.Address;
 import br.edu.infnet.apphospitalar.model.domain.MedicalQuestionnaire;
 import br.edu.infnet.apphospitalar.model.domain.Patient;
-import br.edu.infnet.apphospitalar.model.service.AddressService;
-import br.edu.infnet.apphospitalar.model.service.MedicalQuestionnaireService;
 import br.edu.infnet.apphospitalar.model.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 @Component
 @Order(4)
@@ -43,8 +41,8 @@ public class PatientLoader implements ApplicationRunner {
             LocalDateTime arrivalTime = LocalDateTime.parse(fields[4], formatterTime);
             patient.setArrivalTime(arrivalTime);
             patient.setAddress(new Address(Long.valueOf(fields[5])));
-
             patient.setQuestionnaire(new MedicalQuestionnaire(Long.valueOf(fields[6])));
+            patient.setConsultationList(new ArrayList<>());
             patientService.insert(patient);
             line = reader.readLine();
         }

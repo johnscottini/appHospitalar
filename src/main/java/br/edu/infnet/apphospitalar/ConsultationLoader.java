@@ -7,10 +7,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -40,7 +38,6 @@ public class ConsultationLoader implements ApplicationRunner {
             consultation.setConsultationDateTime(LocalDateTime.parse(fields[3], formatterTime));
 
             consultation.setDoctor(new Doctor(Long.valueOf(fields[4])));
-
 
             consultationService.insert(consultation);
             line = reader.readLine();

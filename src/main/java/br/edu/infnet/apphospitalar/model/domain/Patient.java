@@ -35,10 +35,10 @@ public class Patient extends Person{
     @Setter
     private LocalDateTime arrivalTime;
 
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "patient", orphanRemoval = true ,cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @Getter
     @Setter
-    private List<Consultation> consultationList = new ArrayList<>();
+    private List<Consultation> consultationList;
 
     @OneToOne(cascade = CascadeType.MERGE)
     @Getter
