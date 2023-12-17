@@ -1,5 +1,6 @@
 package br.edu.infnet.apphospitalar.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,13 +29,13 @@ public class Patient extends Person{
         super(fullName, birthDate, cpf, address);
         this.arrivalTime = arrivalTime;
         this.questionnaire = questionnaire;
-        this.score= score;
     }
 
     @Getter
     @Setter
     private LocalDateTime arrivalTime;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "patient", orphanRemoval = true ,cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @Getter
     @Setter
@@ -53,7 +54,6 @@ public class Patient extends Person{
     public String toString() {
         return super.toString() +
                 "arrivalTime=" + arrivalTime +
-                "score=" + score +
                 ", consultationList=" + consultationList+
                 ", questionnaire=" + questionnaire;
     }

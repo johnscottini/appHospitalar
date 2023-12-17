@@ -13,9 +13,13 @@ public class PatientService {
     @Autowired
     private PatientRepository patientRepository;
 
-    @Transactional
     public void insert(Patient patient) {
+
         patientRepository.save(patient);
+    }
+
+    public void delete(Long id) {
+        patientRepository.deleteById(id);
     }
 
     public Collection<Patient> getList() {
