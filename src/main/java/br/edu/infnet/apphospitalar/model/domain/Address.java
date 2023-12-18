@@ -16,12 +16,12 @@ public class Address {
     public Address(Long id) {
         this.id = id;
     }
-    public Address(String street,String state,String city,String postalCode,String number) {
+    public Address(String street, String state, String neighborhood, String postalCode, String locale) {
         this.street= street;
         this.state= state;
-        this.city= city;
+        this.neighborhood = neighborhood;
         this.postalCode= postalCode;
-        this.number= number;
+        this.locale = locale;
     }
 
     @Getter
@@ -34,7 +34,7 @@ public class Address {
 
     @Getter
     @Setter
-    private String city;
+    private String neighborhood;
 
     @Getter
     @Setter
@@ -42,7 +42,11 @@ public class Address {
 
     @Getter
     @Setter
-    private String number;
+    private String locale;
+
+    @Getter
+    @Setter
+    private String complement;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,14 +54,21 @@ public class Address {
     @Setter
     private Long id;
 
+    public Address(String postalCode) {
+        this();
+        this.postalCode= postalCode;
+    }
+
+
     @Override
     public String toString() {
         return "Address:" +
                 "street='" + street + '\'' +
                 ", state='" + state + '\'' +
-                ", city='" + city + '\'' +
+                ", neighborhood='" + neighborhood + '\'' +
                 ", postalCode='" + postalCode + '\'' +
-                ", number='" + number + '\'' +
+                ", locale='" + locale + '\'' +
+                ", complement='" + complement + '\'' +
                 ", id='" + id;
     }
 }

@@ -1,5 +1,7 @@
 package br.edu.infnet.apphospitalar.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +25,7 @@ public class Doctor extends Person{
         this.specialty = specialty;
     }
 
+    @JsonBackReference
     @OneToMany(mappedBy = "doctor",orphanRemoval = true, cascade= CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Consultation> consultationList = new ArrayList<>();
 

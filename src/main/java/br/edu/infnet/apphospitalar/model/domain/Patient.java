@@ -1,5 +1,6 @@
 package br.edu.infnet.apphospitalar.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -35,7 +36,7 @@ public class Patient extends Person{
     @Setter
     private LocalDateTime arrivalTime;
 
-    @JsonIgnore
+    @JsonBackReference
     @OneToMany(mappedBy = "patient", orphanRemoval = true ,cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @Getter
     @Setter

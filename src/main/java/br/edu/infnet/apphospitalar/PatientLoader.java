@@ -3,6 +3,7 @@ package br.edu.infnet.apphospitalar;
 import br.edu.infnet.apphospitalar.model.domain.Address;
 import br.edu.infnet.apphospitalar.model.domain.MedicalQuestionnaire;
 import br.edu.infnet.apphospitalar.model.domain.Patient;
+import br.edu.infnet.apphospitalar.model.service.AddressService;
 import br.edu.infnet.apphospitalar.model.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -22,6 +23,9 @@ public class PatientLoader implements ApplicationRunner {
     @Autowired
     private PatientService patientService;
 
+    @Autowired
+    private AddressService addressService;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
         FileReader file = new FileReader("files/patients.txt");
@@ -40,7 +44,8 @@ public class PatientLoader implements ApplicationRunner {
             patient.setBirthDate(birthDate);
             LocalDateTime arrivalTime = LocalDateTime.parse(fields[4], formatterTime);
             patient.setArrivalTime(arrivalTime);
-            patient.setAddress(new Address(Long.valueOf(fields[5])));
+            Address address = addressService.searchPostalCode(fields[5]);
+            patient.setAddress(address);
             patient.setQuestionnaire(new MedicalQuestionnaire(Long.valueOf(fields[6])));
             patient.setConsultationList(new ArrayList<>());
             patientService.insert(patient);

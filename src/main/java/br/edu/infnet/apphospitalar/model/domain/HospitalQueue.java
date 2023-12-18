@@ -15,7 +15,7 @@ public class HospitalQueue implements Comparable<HospitalQueue> {
     @Setter
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     @Getter
     @Setter
     @JoinColumn(name = "patient_id")

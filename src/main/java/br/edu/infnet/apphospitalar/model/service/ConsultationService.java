@@ -29,4 +29,8 @@ public class ConsultationService {
     public Collection<Consultation> getList() {
         return (Collection<Consultation>) consultationRepository.findAll();
     }
+
+    public void delete(Long id) {
+        consultationRepository.deleteById(id);
+    }
 }

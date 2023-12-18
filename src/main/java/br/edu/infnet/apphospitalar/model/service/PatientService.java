@@ -1,5 +1,6 @@
 package br.edu.infnet.apphospitalar.model.service;
 
+import br.edu.infnet.apphospitalar.model.domain.Address;
 import br.edu.infnet.apphospitalar.model.domain.Patient;
 import br.edu.infnet.apphospitalar.model.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,13 @@ public class PatientService {
     @Autowired
     private PatientRepository patientRepository;
 
-    public void insert(Patient patient) {
+    @Autowired
+    private AddressService addressService;
 
+    public void insert(Patient patient) {
+        String postalCode = patient.getAddress().getPostalCode();
+        Address address = addressService.searchPostalCode(postalCode);
+        patient.setAddress(address);
         patientRepository.save(patient);
     }
 

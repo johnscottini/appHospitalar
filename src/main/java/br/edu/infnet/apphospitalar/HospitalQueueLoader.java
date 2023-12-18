@@ -25,12 +25,14 @@ public class HospitalQueueLoader implements ApplicationRunner {
     private PatientService patientService;
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
         List<Patient> patientsList = (List<Patient>) patientService.getList();
 
         for (Patient pat: patientsList
              ) {
             hospitalQueueService.enqueuePatient(pat);
         }
+
 
         System.out.println("Hospital Queue:");
         for(HospitalQueue hq : hospitalQueueService.getList()) {

@@ -21,4 +21,8 @@ public class MedicalQuestionnaireService {
     public Collection<MedicalQuestionnaire> getList() {
         return (Collection<MedicalQuestionnaire>) medicalQuestionnaireRepository.findAll();
     }
+
+    public void delete(Long id) {
+        medicalQuestionnaireRepository.deleteById(id);
+    }
 }

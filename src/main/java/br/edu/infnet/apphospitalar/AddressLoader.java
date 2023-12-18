@@ -18,7 +18,7 @@ public class AddressLoader implements ApplicationRunner {
     private AddressService addressService;
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        FileReader file = new FileReader("files/addresses.txt");
+ /*       FileReader file = new FileReader("files/addresses.txt");
         BufferedReader reader = new BufferedReader(file);
 
         String line = reader.readLine();
@@ -28,8 +28,8 @@ public class AddressLoader implements ApplicationRunner {
             fields = line.split(";");
             Address address = new Address();
             address.setStreet(fields[0]);
-            address.setCity(fields[1]);
-            address.setNumber(fields[2]);
+            address.setNeighborhood(fields[1]);
+            address.setLocale(fields[2]);
             address.setState(fields[3]);
             address.setPostalCode(fields[4]);
 
@@ -40,6 +40,6 @@ public class AddressLoader implements ApplicationRunner {
         for(Address a : addressService.getList()) {
             System.out.println("Address: "+ a);
         }
-
+*/
     }
 }

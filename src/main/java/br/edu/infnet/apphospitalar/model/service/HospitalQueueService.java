@@ -51,4 +51,16 @@ public class HospitalQueueService {
     public Collection<HospitalQueue> getList() {
         return (Collection<HospitalQueue>) hospitalQueueRepository.findAllByOrderByPositionAsc();
     }
+
+    public void delete(Long id) {
+        hospitalQueueRepository.deleteById(id);
+    }
+
+    public void updateQueue() {
+        List<Patient> patientList = (List<Patient>) patientRepository.findAll();
+        for (Patient pat: patientList
+        ) {
+            enqueuePatient(pat);
+        }
+    }
 }
