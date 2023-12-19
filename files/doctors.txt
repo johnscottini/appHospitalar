@@ -1,4 +1,4 @@
 Dr. João Oliveira;joao@email.com;98765432101;1980-01-01;Cardiologia;CRM1;89012400
 Dra. Ana Lima;ana@email.com;87654321012;1975-02-28;Dermatologia;CRM2;89012401
-Dra. Clara Sousa;clara@email.com;76543210987;1990-10-15;Pediatria;CRM3;89012400
-Dr. Pedro Almeida;pedro@email.com;65432109876;1988-07-07;Ortopedia;CRM4;89012400
+Dra. Clara Sousa;clara@email.com;76543210987;1990-10-15;Pediatria;CRM3;89114874
+Dr. Pedro Almeida;pedro@email.com;65432109876;1988-07-07;Ortopedia;CRM4;89114874

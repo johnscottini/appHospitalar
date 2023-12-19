@@ -1,9 +1,7 @@
 package br.edu.infnet.apphospitalar.model.clients;
 
 import br.edu.infnet.apphospitalar.model.DTO.ViaCepApiResponseDTO;
-import br.edu.infnet.apphospitalar.model.domain.Address;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 

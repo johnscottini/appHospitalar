@@ -36,12 +36,6 @@ public class Patient extends Person{
     @Setter
     private LocalDateTime arrivalTime;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "patient", orphanRemoval = true ,cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    @Getter
-    @Setter
-    private List<Consultation> consultationList;
-
     @OneToOne(cascade = CascadeType.MERGE)
     @Getter
     @Setter
@@ -55,7 +49,6 @@ public class Patient extends Person{
     public String toString() {
         return super.toString() +
                 "arrivalTime=" + arrivalTime +
-                ", consultationList=" + consultationList+
                 ", questionnaire=" + questionnaire;
     }
 

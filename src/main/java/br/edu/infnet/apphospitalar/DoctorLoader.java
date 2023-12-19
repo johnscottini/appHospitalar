@@ -21,9 +21,6 @@ import java.util.ArrayList;
 public class DoctorLoader implements ApplicationRunner {
     @Autowired
     private DoctorService doctorService;
-
-    @Autowired
-    private AddressService addressService;
     @Override
     public void run(ApplicationArguments args) throws Exception {
         FileReader file = new FileReader("files/doctors.txt");
@@ -44,13 +41,7 @@ public class DoctorLoader implements ApplicationRunner {
             doctor.setBirthDate(LocalDate.parse(fields[3], formatter));
             doctor.setSpecialty(fields[4]);
             doctor.setCrm(fields[5]);
-            Address existingAddress = addressService.searchPostalCode(fields[6]);
-            if (existingAddress != null) {
-                doctor.setAddress(existingAddress);
-            } else {
-                doctor.setAddress(new Address(fields[6]));
-            }
-
+            doctor.setAddress(new Address(fields[6]));
             doctorService.insert(doctor);
             line = reader.readLine();
         }

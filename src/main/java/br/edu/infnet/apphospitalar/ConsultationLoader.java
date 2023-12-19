@@ -36,9 +36,7 @@ public class ConsultationLoader implements ApplicationRunner {
             consultation.setConsultationDescription(fields[1]);
             consultation.setConsultationValue(Double.parseDouble(fields[2]));
             consultation.setConsultationDateTime(LocalDateTime.parse(fields[3], formatterTime));
-
             consultation.setDoctor(new Doctor(Long.valueOf(fields[4])));
-
             consultationService.insert(consultation);
             line = reader.readLine();
         }

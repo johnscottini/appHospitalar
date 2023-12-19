@@ -5,7 +5,6 @@ import br.edu.infnet.apphospitalar.model.domain.Patient;
 import br.edu.infnet.apphospitalar.model.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -24,11 +23,19 @@ public class PatientService {
         patientRepository.save(patient);
     }
 
+    public void insertWithoutAddressAPI(Patient patient) {
+        patientRepository.save(patient);
+    }
+
     public void delete(Long id) {
         patientRepository.deleteById(id);
     }
 
     public Collection<Patient> getList() {
         return (Collection<Patient>) patientRepository.findAll();
+    }
+
+    public Optional<Patient> getById(Long id) {
+        return patientRepository.findById(id);
     }
 }

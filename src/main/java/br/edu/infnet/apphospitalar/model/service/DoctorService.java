@@ -23,6 +23,10 @@ public class DoctorService {
         doctorRepository.save(doctor);
     }
 
+    public void insertWithoutAddressAPI(Doctor doctor) {
+        doctorRepository.save(doctor);
+    }
+
     public Collection<Doctor> getList() {
         return (Collection<Doctor>) doctorRepository.findAll();
     }

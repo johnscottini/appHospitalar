@@ -44,10 +44,8 @@ public class PatientLoader implements ApplicationRunner {
             patient.setBirthDate(birthDate);
             LocalDateTime arrivalTime = LocalDateTime.parse(fields[4], formatterTime);
             patient.setArrivalTime(arrivalTime);
-            Address address = addressService.searchPostalCode(fields[5]);
-            patient.setAddress(address);
+            patient.setAddress(new Address(fields[5]));
             patient.setQuestionnaire(new MedicalQuestionnaire(Long.valueOf(fields[6])));
-            patient.setConsultationList(new ArrayList<>());
             patientService.insert(patient);
             line = reader.readLine();
         }

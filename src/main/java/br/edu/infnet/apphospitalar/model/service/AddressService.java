@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class AddressService {
@@ -17,10 +18,7 @@ public class AddressService {
     @Autowired
     private IAddressClient addressClient;
     public void insert(Address address) {
-        Address existingAddress = addressRepository.findByPostalCode(address.getPostalCode());
-        if (existingAddress == null) {
             addressRepository.save(address);
-        }
     }
 
     public Collection<Address> getList() {
@@ -28,16 +26,11 @@ public class AddressService {
     }
 
     public Address searchPostalCode(String postalCode) {
-        Address existingAddress = addressRepository.findByPostalCode(postalCode);
-        if (existingAddress != null) {
-            return existingAddress;
-        } else {
             ViaCepApiResponseDTO viaCepApiResponseDTO = addressClient.searchPostalCode(postalCode);
             Address address = mapToAddress(viaCepApiResponseDTO);
             addressRepository.save(address);
             return address;
         }
-    }
 
     private Address mapToAddress(ViaCepApiResponseDTO viaCepApiResponseDTO) {
         Address address = new Address();
@@ -49,5 +42,9 @@ public class AddressService {
         address.setState(viaCepApiResponseDTO.getUf());
 
         return address;
+    }
+
+    public void delete(Long id) {
+        addressRepository.deleteById(id);
     }
 }

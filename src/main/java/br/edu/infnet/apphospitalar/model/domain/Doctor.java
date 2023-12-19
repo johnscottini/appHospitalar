@@ -1,14 +1,9 @@
 package br.edu.infnet.apphospitalar.model.domain;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Doctor extends Person{
@@ -24,10 +19,6 @@ public class Doctor extends Person{
         this.crm= crm;
         this.specialty = specialty;
     }
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "doctor",orphanRemoval = true, cascade= CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Consultation> consultationList = new ArrayList<>();
 
     @Getter
     @Setter

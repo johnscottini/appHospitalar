@@ -9,4 +9,6 @@ public interface HospitalQueueRepository extends CrudRepository<HospitalQueue, L
     List<HospitalQueue> findAllByOrderByScoreDesc();
 
     List<HospitalQueue> findAllByOrderByPositionAsc();
+
+   HospitalQueue findHospitalQueueByPatientId(Long id);
 }
